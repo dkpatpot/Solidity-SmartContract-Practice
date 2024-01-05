@@ -1,6 +1,7 @@
 const path = require('path');
 const solc = require('solc');
 const fs = require('fs');
+const { log } = require('console');
 
 const inboxPath = path.resolve(__dirname, "contracts", "inbox.sol");
 const source = fs.readFileSync(inboxPath, "utf-8");
@@ -23,15 +24,14 @@ const input = {
 
 try {
   const output = solc.compile(JSON.stringify(input));
-
+  
   const parsedOutput = JSON.parse(output);
-
+  console.log(parsedOutput);
   if (parsedOutput.errors) {
     console.error("Compilation errors:");
     parsedOutput.errors.forEach((error) => {
       console.error(error.formattedMessage);
     });
-
     process.exit(1);
   }
 
