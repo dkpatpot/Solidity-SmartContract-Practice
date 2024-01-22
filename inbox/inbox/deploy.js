@@ -6,7 +6,7 @@ const bytecode = compiledFile.evm.bytecode.object;
 
 const provider = new HDWalletProvider(
   "trap fury debate relax payment flee sweet crawl stomach business vanish own",
-  "https://sepolia.infura.io/v3/3cd6f965d4b7478ba975d45b5dea40cd"
+  "https://rpc.sonic.fantom.network/"
 );
 const web3 = new Web3(provider);
 
@@ -15,7 +15,7 @@ const deploy = async () => {
   console.log("Attemping to deploy", accounts[0]);
   const inbox = await new web3.eth.Contract(interface)
     .deploy({ data: bytecode, arguments: ["Hi there"] })
-    .send({ from: accounts[0],gas: "1000000" });
+    .send({ from: accounts[0],gas: "100000" });
   console.log('Contract deployed to',inbox.options.address);
   provider.engine.stop();
 };
